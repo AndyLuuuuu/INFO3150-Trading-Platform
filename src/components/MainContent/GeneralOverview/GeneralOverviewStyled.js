@@ -81,6 +81,6 @@ export const StatTitle = styled.p`
 `;
 
 export const StatValue = styled.p`
-  font-size: 6rem;
+  font-size: 4rem;
   font-weight: lighter;
 `;

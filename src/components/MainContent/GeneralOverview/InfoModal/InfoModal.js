@@ -12,7 +12,8 @@ import closeIcon from "../../../../assets/icons/close_icon.svg";
 
 const InfoModal = props => {
   return (
-    <Overlay onClick={props.hideModal} showModal={props.showModal}>
+    <React.Fragment>
+      <Overlay onClick={props.hideModal} showModal={props.showModal} />
       <InfoModalContainer>
         <InfoModalTitle>
           Transaction Record
@@ -52,7 +53,7 @@ const InfoModal = props => {
           ) : null}
         </InfoModalContent>
       </InfoModalContainer>
-    </Overlay>
+    </React.Fragment>
   );
 };
 

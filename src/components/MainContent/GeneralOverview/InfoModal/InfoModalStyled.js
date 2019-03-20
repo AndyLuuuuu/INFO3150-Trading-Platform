@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Overlay = styled.div`
   position: absolute;
+  z-index: 25;
   width: 100%;
   height: 100vh;
   margin-top: -5rem;
@@ -12,7 +13,7 @@ export const InfoModalContainer = styled.div`
   position: absolute;
   width: fit-content;
   height: fit-content;
-  z-index: 50;
+  z-index: 100;
   background-color: ${props => props.theme.colors.secondary};
   top: 0;
   bottom: 0;
@@ -41,7 +42,7 @@ export const InfoModalTitle = styled.h3`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5rem 0;
+  margin-bottom: 0.5rem;
 `;
 
 export const InfoModalLabel = styled.p`
