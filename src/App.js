@@ -15,7 +15,7 @@ class App extends Component {
     userID: "",
     username: "",
     userFullName: "",
-    isTrader: true
+    isTrader: false
   };
 
   LogoutHandler = () => {
@@ -31,13 +31,14 @@ class App extends Component {
     this.setState(prevState => ({ register: !prevState.register }));
   };
 
-  LoggedInHandler = ({ userID, username, userFullName }) => {
+  LoggedInHandler = ({ userID, username, userFullName, isTrader }) => {
     console.log("hit");
     this.setState({
       userID: userID,
       username: username,
       userFullName: userFullName,
-      loggedIn: true
+      loggedIn: true,
+      isTrader: isTrader == true ? true : false
     });
     console.log(this.state);
   };
@@ -65,10 +66,6 @@ class App extends Component {
                 userFullName={this.state.userFullName}
                 username={this.state.username}
               />
-              {/* <RecordsView
-                isTrader={this.state.isTrader}
-                userID={this.state.userID}
-              /> */}
             </div>
           ) : (
             <Login

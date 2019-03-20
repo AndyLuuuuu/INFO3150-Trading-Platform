@@ -11,6 +11,10 @@ export const LoginContainer = styled.div`
   background-color: ${props => props.theme.colors.secondary};
 `;
 
+export const LoginTitle = styled.h1`
+  margin: 1rem 0;
+`;
+
 export const LoginButton = styled.button`
   width: 26rem;
   height: 4rem;
@@ -37,6 +41,7 @@ export const ErrorMessage = styled.p`
   opacity: ${props => (props.error ? "1" : "0")};
   color: red;
   font-size: 0.9rem;
+  margin: 1rem 0;
 `;
 
 export const RegisterContainer = styled.div`

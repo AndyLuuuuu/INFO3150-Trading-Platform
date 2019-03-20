@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import {
   LoginContainer,
+  LoginTitle,
   LoginButton,
   ErrorMessage,
   RegisterContainer,
@@ -25,10 +26,30 @@ class Login extends Component {
   };
 
   ValidationCheck = () => {
-    this.setState(prevState => ({
-      error: !prevState.error
-    }));
-    console.log(this.state.error);
+    if (
+      this.state.username.includes("@") &&
+      this.state.username.includes(".")
+    ) {
+      const loginInformation = {
+        username: this.state.username,
+        password: this.state.password
+      };
+      axios
+        .post("/api/login", loginInformation)
+        .then(res => {
+          if (res.status === 200) {
+            this.props.loggedInHandler(res.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          this.setState({ error: true });
+        });
+    } else {
+      this.setState(prevState => ({
+        error: true
+      }));
+    }
   };
 
   InputChangeHandler = event => {
@@ -47,21 +68,7 @@ class Login extends Component {
   };
 
   LoginHandler = () => {
-    const loginInformation = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    axios
-      .post("/api/login", loginInformation)
-      .then(res => {
-        if (res.status === 200) {
-          this.props.loggedInHandler(res.data);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({ error: true });
-      });
+    this.ValidationCheck();
   };
 
   RegisterLoginHandler = ({ username, password }) => {
@@ -73,12 +80,14 @@ class Login extends Component {
   render() {
     return (
       <LoginContainer>
+        <LoginTitle>Login</LoginTitle>
         <InputContainer>
           <InputIcon src={userIcon} alt="Username Icon" />
           <StyledInput
             margin={true}
             name="usernameInput"
             onChange={this.InputChangeHandler}
+            placeholder="Email"
           />
         </InputContainer>
         <InputContainer>
@@ -88,6 +97,7 @@ class Login extends Component {
             margin={true}
             name="passwordInput"
             onChange={this.InputChangeHandler}
+            placeholder="Password"
           />
         </InputContainer>
         <LoginButton success={true} onClick={this.LoginHandler}>

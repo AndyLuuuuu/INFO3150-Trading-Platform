@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 3001;
 
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "Aa1779144",
+  user: "andylu",
+  password: "1779144",
   database: "TradingPlatform"
 });
 
@@ -34,7 +34,8 @@ app.post("/api/register", (req, res) => {
     userID: uuidv4(),
     username: req.body.email,
     userFullName: req.body.fullName,
-    userPassword: bcrypt.hashSync(req.body.password, 10)
+    userPassword: bcrypt.hashSync(req.body.password, 10),
+    isTrader: req.body.isTrader ? true : false
   };
   connection.query(
     "INSERT INTO UserAccount SET ?",
@@ -55,7 +56,7 @@ app.post("/api/login", (req, res) => {
     password: req.body.password
   };
   connection.query(
-    "SELECT userID, userFullName, username, userPassword FROM UserAccount WHERE username = ?",
+    "SELECT userID, userFullName, username, userPassword, isTrader FROM UserAccount WHERE username = ?",
     loginInformation.username,
     (err, results, fields) => {
       if (err) {
@@ -70,7 +71,8 @@ app.post("/api/login", (req, res) => {
           const userInformation = {
             userFullName: results[0].userFullName,
             username: results[0].username,
-            userID: results[0].userID
+            userID: results[0].userID,
+            isTrader: results[0].isTrader
           };
           res.send(userInformation);
         } else {
@@ -84,21 +86,41 @@ app.post("/api/login", (req, res) => {
 });
 
 app.post("/api/records", (req, res) => {
-  connection.query(
-    "SELECT * FROM StockRecord WHERE userID = ?",
-    req.body.userID,
-    (err, results, fields) => {
-      if (err) {
-        res.sendStatus(400);
+  if (req.body.isTrader) {
+    connection.query(
+      "SELECT * FROM StockRecord WHERE userID = ?",
+      req.body.userID,
+      (err, results, fields) => {
+        if (err) {
+          res.sendStatus(400);
+        }
+        if (results.length != 0) {
+          res.send(results);
+        } else {
+          res.sendStatus(400);
+        }
       }
-      if (results.length != 0) {
-        res.send(results);
-      } else {
-        res.sendStatus(400);
+    );
+    console.log(req.body);
+  } else if (!req.body.isTrader) {
+    connection.query(
+      "SELECT StockRecord.userID, stockID, stockName, stockSymbol, marketType, buyPrice, sellPrice, numberOfStocks," +
+        "purchaseDate, UserAccount.userFullName, UserAccount.username FROM StockRecord INNER JOIN UserAccount ON " +
+        "StockRecord.userID = UserAccount.userID;",
+      (err, results, fields) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(400);
+        }
+        console.log(results);
+        if (results.length != 0) {
+          res.send(results);
+        } else {
+          res.sendStatus(400);
+        }
       }
-    }
-  );
-  console.log(req.body);
+    );
+  }
 });
 
 app.listen(PORT, () => {

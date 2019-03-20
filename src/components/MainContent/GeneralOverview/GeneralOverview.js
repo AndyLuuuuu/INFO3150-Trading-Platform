@@ -33,7 +33,8 @@ class GeneralOverview extends Component {
   };
   componentDidMount() {
     const userInformation = {
-      userID: this.props.userID
+      userID: this.props.userID,
+      isTrader: this.props.isTrader
     };
     axios
       .post("/api/records", userInformation)
@@ -49,7 +50,9 @@ class GeneralOverview extends Component {
   dateConverter = iso => {
     var date = new Date(iso);
     return `${date.getMonth() +
-      1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+      1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${
+      date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+    }:${date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds()}`;
   };
 
   calculateInformation = () => {
@@ -83,6 +86,7 @@ class GeneralOverview extends Component {
   };
 
   showModalHandler = record => {
+    console.log(record);
     var selectedRecord = {
       ...record,
       gross: 0,
@@ -106,14 +110,13 @@ class GeneralOverview extends Component {
   render() {
     return (
       <GeneralOverviewContainer>
-        {this.state.showInfoModal ? (
-          <InfoModal
-            showModal={this.state.showInfoModal}
-            selectedRecord={this.state.selectedRecord}
-            hideModal={this.hideModalHandler}
-            userFullName={this.props.userFullName}
-          />
-        ) : null}
+        <InfoModal
+          showModal={this.state.showInfoModal}
+          selectedRecord={this.state.selectedRecord}
+          hideModal={this.hideModalHandler}
+          userFullName={this.props.userFullName}
+          isTrader={this.props.isTrader}
+        />
         <StatContainer>
           {console.log(this.state)}
           {this.state.winrate ? (
@@ -122,7 +125,7 @@ class GeneralOverview extends Component {
                 <StatIcon src={WinIcon} />
                 <StatTitle>Win Rate</StatTitle>
               </div>
-              <StatValue>{this.state.winrate}%</StatValue>
+              <StatValue>{this.state.winrate.toFixed(0)}%</StatValue>
             </StatContent>
           ) : null}
           {this.state.totalWin ? (

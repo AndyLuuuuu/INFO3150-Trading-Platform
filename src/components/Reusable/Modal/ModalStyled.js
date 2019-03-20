@@ -22,7 +22,9 @@ export const ModalContainer = styled.div`
   opacity: ${props => (props.showModal ? "1" : "0")};
 `;
 
-export const ModalTitle = styled.h1``;
+export const ModalTitle = styled.h1`
+  margin: 1rem 0;
+`;
 
 export const ModalInput = styled.input`
   width: 18rem;
@@ -36,6 +38,20 @@ export const ModalInput = styled.input`
   &:focus {
     outline: none;
   }
+`;
+export const ModalCheckboxContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const ModalCheckboxLabel = styled.label`
+  font-size: ${props => props.theme.fontSize.sm};
+  margin-left: 1rem;
+`;
+
+export const ModalCheckbox = styled.input`
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 1rem;
 `;
 
 export const ModalButtonContainer = styled.div`
@@ -68,6 +84,9 @@ export const ModalButton = styled.button`
 `;
 
 export const ModalError = styled.p`
-  font-size: ${props => props.theme.fontSize.sm};
+  transition: opacity 100ms ease-in-out;
+  opacity: ${props => (props.error ? "1" : "0")};
   color: red;
+  font-size: ${props => props.theme.fontSize.sm};
+  margin: 1rem 0;
 `;

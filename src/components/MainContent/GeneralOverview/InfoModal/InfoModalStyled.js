@@ -7,13 +7,16 @@ export const Overlay = styled.div`
   height: 100vh;
   margin-top: -5rem;
   background-color: ${props => props.theme.colors.overlay};
+  z-index: ${props => (props.showModal ? "25" : "-1")};
+  transition: opacity 125ms ease-in-out;
+  opacity: ${props => (props.showModal ? "1" : "0")};
 `;
 
 export const InfoModalContainer = styled.div`
   position: absolute;
   width: fit-content;
   height: fit-content;
-  z-index: 100;
+  z-index: ${props => (props.showModal ? "50" : "-1")};
   background-color: ${props => props.theme.colors.secondary};
   top: 0;
   bottom: 0;
@@ -22,6 +25,8 @@ export const InfoModalContainer = styled.div`
   margin: auto;
   text-align: left;
   padding: 3rem;
+  transition: opacity 150ms ease-in-out;
+  opacity: ${props => (props.showModal ? "1" : "0")};
 `;
 
 export const InfoModalClose = styled.img`
