@@ -1,4 +1,5 @@
 # INFO3150-Trading-Platform
+
 Project implementation for INFO 3150: Object-Oriented Software Engineering
 
 This project is written in ReactJS with a NodeJS/ExpressJS backend with MySQL.
@@ -15,3 +16,6 @@ This project is written in ReactJS with a NodeJS/ExpressJS backend with MySQL.
 8. In other terminal run "npm start"
 9. Your default browser should automatically start.
 
+### NOTE: There is no option to add records.
+
+### You must manually update DB creation script to add your records.
