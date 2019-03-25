@@ -5,12 +5,11 @@ import Login from "./components/Login/Login";
 import Modal from "./components/Reusable/Modal/Modal";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./components/Theme/theme";
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
   state = {
-    loggedIn: false,
+    loggedIn: true,
     register: false,
     userID: "",
     username: "",

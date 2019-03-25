@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 3001;
 
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "andylu",
-  password: "1779144",
+  user: "root",
+  password: "",
   database: "TradingPlatform"
 });
 
@@ -86,27 +86,27 @@ app.post("/api/login", (req, res) => {
 });
 
 app.post("/api/records", (req, res) => {
-  if (req.body.isTrader) {
-    connection.query(
-      "SELECT * FROM StockRecord WHERE userID = ?",
-      req.body.userID,
-      (err, results, fields) => {
-        if (err) {
-          res.sendStatus(400);
-        }
-        if (results.length != 0) {
-          res.send(results);
-        } else {
-          res.sendStatus(400);
-        }
+  connection.query(
+    "SELECT * FROM StockRecord WHERE userID = ?",
+    req.body.userID,
+    (err, results, fields) => {
+      if (err) {
+        res.sendStatus(400);
       }
-    );
-    console.log(req.body);
-  } else if (!req.body.isTrader) {
+      if (results.length != 0) {
+        res.send(results);
+      } else {
+        res.sendStatus(400);
+      }
+    }
+  );
+  console.log(req.body);
+});
+
+app.post("/api/traders", (req, res) => {
+  if (!req.body.isTrader) {
     connection.query(
-      "SELECT StockRecord.userID, stockID, stockName, stockSymbol, marketType, buyPrice, sellPrice, numberOfStocks," +
-        "purchaseDate, UserAccount.userFullName, UserAccount.username FROM StockRecord INNER JOIN UserAccount ON " +
-        "StockRecord.userID = UserAccount.userID;",
+      "SELECT userFullName, userID FROM UserAccount WHERE isTrader = 1;",
       (err, results, fields) => {
         if (err) {
           console.log(err);
