@@ -36,6 +36,7 @@ class Modal extends Component {
 
         axios.post("/api/register", registerInformation).then(res => {
           if (res.status === 200) {
+            this.setState({ fullName: "", email: "", password: "" });
             this.props.registerClick();
           }
         });
@@ -94,18 +95,21 @@ class Modal extends Component {
           placeholder="Full Name"
           onChange={this.InputChangeHandler}
           name="nameInput"
+          value={this.state.fullName}
         />
         <ModalInput
           placeholder="Email"
           type="email"
           onChange={this.InputChangeHandler}
           name="emailInput"
+          value={this.state.email}
         />
         <ModalInput
           placeholder="Password"
           type="password"
           onChange={this.InputChangeHandler}
           name="passwordInput"
+          value={this.state.password}
         />
         <ModalButtonContainer>
           Please select one:

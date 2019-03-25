@@ -150,6 +150,7 @@ class HROverview extends Component {
   };
 
   showTraderInformation = (userID, userFullName) => {
+    this.setState({ showTraderInformation: false });
     if (!this.state.selectedTrader) {
       this.setState({ selectedTrader: userFullName });
     } else {
@@ -169,7 +170,9 @@ class HROverview extends Component {
       })
       .then(() => {
         if (!this.state.showTraderInformation) {
-          this.setState({ showTraderInformation: true });
+          setTimeout(() => {
+            this.setState({ showTraderInformation: true });
+          }, 500);
         } else {
           this.setState({ showTraderInformation: false });
           setTimeout(() => {
