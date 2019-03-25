@@ -19,7 +19,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const NavLogo = styled.img`
-  width: 8rem;
+  width: 7rem;
   height: auto;
 `;
 

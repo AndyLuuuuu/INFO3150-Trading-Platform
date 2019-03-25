@@ -10,7 +10,7 @@ export const ModalContainer = styled.div`
   bottom: 0;
   background-color: ${props => props.theme.colors.secondary};
   width: fit-content;
-  height: fit-content;
+  height: 30rem;
   padding: 2.5rem;
   display: flex;
   flex-flow: column;
