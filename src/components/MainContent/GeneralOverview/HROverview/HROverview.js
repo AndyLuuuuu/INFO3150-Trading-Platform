@@ -87,7 +87,7 @@ class HROverview extends Component {
 
   separateRecordYears = () => {
     this.setState({ traderRecordYears: [] });
-    if (this.state.traderRecords.length != 0) {
+    if (this.state.traderRecords.length !== 0) {
       this.state.traderRecords.map(record => {
         var date = new Date(record.purchaseDate);
         var year = date.getFullYear();
@@ -285,7 +285,7 @@ class HROverview extends Component {
           </StockRecordContainer>
           <WinRatesContainer>
             <YearsContainer>
-              {this.state.traderRecordYears.length != 0
+              {this.state.traderRecordYears.length !== 0
                 ? this.state.traderRecordYears.map(year => {
                     return (
                       <YearContainer
@@ -317,14 +317,14 @@ class HROverview extends Component {
                     <MonthContainer>
                       <MonthTitle>
                         Total:{" "}
-                        {this.state.traderYearlyWinRate != 0
+                        {this.state.traderYearlyWinRate !== 0
                           ? this.state.traderYearlyWinRate[0]
                           : 0}
                       </MonthTitle>
                     </MonthContainer>
                   </MonthsContainer>
                   <WinRateContainer>
-                    {this.state.traderMonthlyWinRate.length != 0 ? (
+                    {this.state.traderMonthlyWinRate.length !== 0 ? (
                       <React.Fragment>
                         {this.state.traderMonthlyWinRate.map(month => {
                           return (

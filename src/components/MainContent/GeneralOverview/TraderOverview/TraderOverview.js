@@ -59,7 +59,7 @@ class TraderOverview extends Component {
     var loss = 0;
     var sellTotal = 0;
     var buyTotal = 0;
-    if (this.state.records != null || this.state.records == []) {
+    if (this.state.records !== null || this.state.records === []) {
       this.state.records.map(record => {
         if (record.sellPrice > record.buyPrice) {
           win++;

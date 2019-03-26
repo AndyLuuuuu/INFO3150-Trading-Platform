@@ -3,7 +3,6 @@ import {
   ModalContainer,
   ModalTitle,
   ModalInput,
-  ModalCheckboxContainer,
   ModalCheckboxLabel,
   ModalCheckbox,
   ModalButtonContainer,
@@ -11,7 +10,6 @@ import {
   ModalButton
 } from "./ModalStyled";
 import axios from "axios";
-import { RightContainer } from "../../NavigationBar/NavBarStyled";
 
 class Modal extends Component {
   state = {
@@ -79,6 +77,8 @@ class Modal extends Component {
         break;
       case "passwordInput":
         this.setState({ password: event.target.value });
+        break;
+      default:
         break;
     }
     console.log(this.state);
