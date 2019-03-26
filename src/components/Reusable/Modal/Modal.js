@@ -34,12 +34,17 @@ class Modal extends Component {
           isHR: this.state.isHR
         };
 
-        axios.post("/api/register", registerInformation).then(res => {
-          if (res.status === 200) {
-            this.setState({ fullName: "", email: "", password: "" });
-            this.props.registerClick();
-          }
-        });
+        axios
+          .post("/api/register", registerInformation)
+          .then(res => {
+            if (res.status === 200) {
+              this.setState({ fullName: "", email: "", password: "" });
+              this.props.registerClick();
+            }
+          })
+          .then(() => {
+            this.setState({ error: false });
+          });
       } else {
         this.setState({ error: true });
       }
@@ -132,7 +137,14 @@ class Modal extends Component {
           Please check your fields.
         </ModalError>
         <ModalButtonContainer>
-          <ModalButton onClick={this.props.registerClick}>Cancel</ModalButton>
+          <ModalButton
+            onClick={() => {
+              this.setState({ error: false });
+              this.props.registerClick();
+            }}
+          >
+            Cancel
+          </ModalButton>
           <ModalButton success={true} onClick={this.RegisterUserHandler}>
             Register
           </ModalButton>
