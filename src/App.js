@@ -9,7 +9,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    loggedIn: false,
+    loggedIn: true,
     register: false,
     userID: "",
     username: "",

@@ -38,6 +38,21 @@ export const TraderName = styled.p`
   font-size: ${props => props.theme.fontSize.sm};
 `;
 
+export const TraderTitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  position: relative;
+  background-color: #424554;
+`;
+
+export const TraderTitle = styled.p`
+  text-transform: uppercase;
+  font-size: ${props => props.theme.fontSize.sm};
+  color: ${props => props.theme.colors.whitesmoke};
+`;
+
 export const ExpandIcon = styled.img`
   position: absolute;
   right: 0;

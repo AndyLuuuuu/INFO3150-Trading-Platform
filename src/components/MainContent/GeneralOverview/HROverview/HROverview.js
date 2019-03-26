@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {
   HROverviewContainer,
   TraderPanel,
+  TraderTitleContainer,
+  TraderTitle,
   TraderNameContainer,
   TraderName,
   ExpandIcon,
@@ -220,6 +222,9 @@ class HROverview extends Component {
           userFullName={this.state.selectedTrader}
         />
         <TraderPanel>
+          <TraderTitleContainer>
+            <TraderTitle>Traders</TraderTitle>
+          </TraderTitleContainer>
           {this.state.traders
             ? this.state.traders.map(trader => {
                 return (
