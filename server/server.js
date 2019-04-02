@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3001;
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "Aa1779144",
   database: "TradingPlatform"
 });
 

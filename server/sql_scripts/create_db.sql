@@ -32,7 +32,7 @@ CREATE TABLE StockRecord (
 
 -- insert data into the database
 INSERT INTO UserAccount VALUES
-('59e5fad9-1e48-4208-89fb-8fe0354c6108', 'superhr@trade.com', 'Super HR', '$2b$10$A822vnDThh5wxJ80f66I6u0SmrlCfPuGHfDbnxo2bzfsICHxRG.Bu', '0'),
+('59e5fad9-1e48-4208-89fb-8fe0354c6108', 'lancenelson@trade.com', 'Lance Nelson', '$2b$10$A822vnDThh5wxJ80f66I6u0SmrlCfPuGHfDbnxo2bzfsICHxRG.Bu', '0'),
 ('e27e808e-9737-42a4-9de6-a8a3b8a63fd6', 'andylu@trade.com', 'Andy Lu', '$2b$10$Z8M.IYn9ZP50Z1L1MK0C8OzgdjPBBgSL1wLy2X7zCVZqcdogLsode', '1'),
 ('b8dc7771-2286-4f0a-ada9-68f33392ce49', 'zedansari@trade.com', 'Zed Ansari', '$2b$10$ECvlzgIG1ZfZS6QvW02buOdJv1M/LKSqB/e/KjqLwgC9aktlBLeTC', '1'),
 ('ebffd134-9022-4261-80a9-4c15d9b0a525', 'junhuang@trade.com', 'Jun Huang', '$2b$10$Cjkeb63ik3ZZ77PJXuPO5.2SUYA7zBxAAG6S9i6Nog2bV954a69CG', '1');
