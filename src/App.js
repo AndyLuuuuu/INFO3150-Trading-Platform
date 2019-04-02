@@ -58,7 +58,6 @@ class App extends Component {
           />
           {this.state.loggedIn ? (
             <div className="MainContent">
-              {/* <Dashboard /> */}
               <GeneralOverview
                 isTrader={this.state.isTrader}
                 userID={this.state.userID}
